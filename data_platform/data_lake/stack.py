@@ -1,21 +1,22 @@
 from data_platform.data_lake.base import BaseDataLakeBucket, DataLakeLayer
 from aws_cdk import core
-from data_platform import active_environment
 from aws_cdk import (
     aws_s3 as s3,
 )
 
+from data_platform import active_environment
 
 class DataLakeStack(core.Stack):
-    def __int__(self, scope: core.Construct, **kwargs) -> None:
+    def __init__(self, scope: core.Construct, **kwargs) -> None:
         self.deploy_env = active_environment
-        super().__int__(scope, id=f'{self.deploy_env.value}-data-lake-stack', **kwargs)
+        super().__init__(scope, id=f'{self.deploy_env.value}-data-lake-stack', **kwargs)
 
         self.data_lake_raw_bucket = BaseDataLakeBucket(
             self,
             deploy_env=self.deploy_env,
             layer=DataLakeLayer.RAW
         )
+
 
         self.data_lake_raw_bucket.add_lifecycle_rule(
             transitions=[
@@ -44,4 +45,3 @@ class DataLakeStack(core.Stack):
             deploy_env=self.deploy_env,
             layer=DataLakeLayer.AGGREGATED
         )
-
