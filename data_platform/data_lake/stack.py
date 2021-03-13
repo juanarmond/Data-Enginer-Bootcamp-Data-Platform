@@ -6,6 +6,7 @@ from aws_cdk import (
 
 from data_platform import active_environment
 
+
 class DataLakeStack(core.Stack):
     def __init__(self, scope: core.Construct, **kwargs) -> None:
         self.deploy_env = active_environment
@@ -16,7 +17,6 @@ class DataLakeStack(core.Stack):
             deploy_env=self.deploy_env,
             layer=DataLakeLayer.RAW
         )
-
 
         self.data_lake_raw_bucket.add_lifecycle_rule(
             transitions=[
