@@ -3,6 +3,7 @@ from aws_cdk import core
 from aws_cdk import (
     aws_s3 as s3,
 )
+
 from data_platform.environment import Environment
 
 
@@ -10,14 +11,13 @@ class DataLakeLayer(Enum):
     RAW = 'raw'
     PROCESSED = 'processed'
     AGGREGATED = 'aggregated'
-    # CURATE = 'curated'
 
 
 class BaseDataLakeBucket(s3.Bucket):
-    def __init__(self, scope: core.Construct, deploy_env: Environment, layer: DataLakeLayer, **kwards):
+    def __init__(self, scope: core.Construct, deploy_env: Environment, layer: DataLakeLayer, **kwargs):
         self.layer = layer
         self.deploy_env = deploy_env
-        self.obj_name = f's3-juanarmond-{self.deploy_env.value}-data-lake-{self.layer.value}'
+        self.obj_name = f's3-belisco-turma-4-{self.deploy_env.value}-data-lake-{self.layer.value}'
 
         super().__init__(
             scope,
@@ -29,15 +29,16 @@ class BaseDataLakeBucket(s3.Bucket):
             **kwargs
         )
 
+        self.set_default_lifecycle_rules()
 
     @property
     def default_block_public_access(self):
         return s3.BlockPublicAccess(
-            ignore_public_acls=True,
-            block_public_acls=True,
-            block_public_policy=True,
-            restrict_public_buckets=True
-        )
+                ignore_public_acls=True,
+                block_public_acls=True,
+                block_public_policy=True,
+                restrict_public_buckets=True
+            )
 
     @property
     def default_encryption(self):
