@@ -6,7 +6,7 @@ from data_platform.kenisis.stack import KinesisStack
 from data_platform.glue_catalog.stack import GlueCatalogStack
 from data_platform.athena.stack import AthenaStack
 from data_platform.redshift.stack import RedshiftStack
-from data_platform.databricks.stack import DatabricksStack
+# from data_platform.databricks.stack import DatabricksStack
 
 app = core.App()
 data_lake = DataLakeStack(app)
