@@ -28,7 +28,7 @@ class DatabricksStack(core.Stack):
         cross_account_role = iam.Role(
             self,
             id=f"iam-{self.deploy_env.value}-databricks-cross-account-role",
-            assumed_by=iam.AccountPrincipal(account_id="414351767826"),
+            assumed_by=iam.AccountPrincipal(account_id="874361926784433"),
             description=f"Allows databricks access to account",
         )
 
