@@ -46,6 +46,7 @@ while True:
     print(idx)
     idx += 1
     created_at = datetime.now().isoformat()
+    # print(created_at, datetime.now())
     product_name, value = choice(list(products.items()))
     cur.execute(
         f"insert into orders values ('{created_at}', {idx}, '{product_name}', {value})"

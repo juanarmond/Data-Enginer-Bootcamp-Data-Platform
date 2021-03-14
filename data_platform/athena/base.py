@@ -61,7 +61,7 @@ class BaseAthenaWorkgroup(athena.CfnWorkGroup):
             scope,
             id=self.obj_name,
             name=self.obj_name,
-            description='Workgroup padrao para execucao de queries',
+            description='Standard Workgroup to execute queries',
             recursive_delete_option=True,
             state='ENABLED',
             work_group_configuration=self.default_workgroup_configuration,
