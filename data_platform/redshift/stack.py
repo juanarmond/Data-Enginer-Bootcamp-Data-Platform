@@ -5,6 +5,14 @@ from data_platform import active_environment
 
 from data_platform.common_stack import CommonStack
 
+"""
+CREATE EXTERNAL SCHEMA local_schema_name
+FROM DATA CATALOG
+DATABASE 'database_name'
+REGION 'aws-region'
+IAM_ROLE 'iam-role-arn-string'
+"""
+
 
 class SpectrumRole(iam.Role):
     def __init__(
